@@ -18,6 +18,8 @@ class ReceiverThread extends Thread {
   byte[] emptyBuffer = new byte[0]; // emtpy the inBuffer after decoding image, not such elegant but working
   boolean running;    // Is the thread running?  Yes or no?
   boolean available;  // Are there new tweets available?
+  boolean launch = true; 
+  int chunk = 0;  
 
   // Start with something 
   PImage img;
@@ -82,14 +84,17 @@ class ReceiverThread extends Thread {
     // byte[] data = p.getData();
     byte[] data = new byte[ p.getLength() ];
     System.arraycopy( p.getData(), 0, data, 0, data.length );
-
+    if (launch == true) {
+      launch = false; 
+      chunk = data.length; 
+    }
     println("--- Received datagram with " + p.getLength() + " bytes." );
     // Gather all datagram chunk, last chunk is smaller 
-    if ( data.length == 1460 ) {
+    if ( data.length == chunk ) {
       inBuffer = concatenate(inBuffer, data); 
       // println("Concate " + inBuffer.length + " bytes." );
     } else {  
-      if ( data.length < 1460 ) {
+      if ( data.length < chunk ) {
         inBuffer = concatenate(inBuffer, data);
         // println("Picture"); 
         // println("Received datagram with " + inBuffer.length + " bytes." );

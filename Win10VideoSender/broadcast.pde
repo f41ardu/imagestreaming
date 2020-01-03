@@ -31,7 +31,7 @@ void broadcast(PImage img) {
   }
  // Get the byte array, which we will send out via UDP!
   byte[] packet = baStream.toByteArray();
-  int range = 1460;
+  int range = 1567;
   int pos = 0;
   int remaining;
   
