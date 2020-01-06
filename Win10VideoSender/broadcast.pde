@@ -31,7 +31,7 @@ void broadcast(PImage img, int port, String sendtoHost) {
   }
  // Get the byte array, which we will send out via UDP!
   byte[] packet = baStream.toByteArray();
-  int range = 1567;
+  int range = 1460;
   int pos = 0;
   int remaining;
   
@@ -48,7 +48,7 @@ void broadcast(PImage img, int port, String sendtoHost) {
         pos += block.length;
         // println("Sending datagram with " + block.length + " bytes" );
         try {
-                ds.send(new DatagramPacket(block,block.length, InetAddress.getByName("localhost"),clientPort)); 
+                ds.send(new DatagramPacket(block,block.length, InetAddress.getByName(sendtoHost),clientPort)); 
              } 
         catch (Exception e) {
                  e.printStackTrace();

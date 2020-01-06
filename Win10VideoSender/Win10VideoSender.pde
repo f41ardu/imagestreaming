@@ -6,7 +6,7 @@ import java.io.*;
 
 // This is the port and host we are sending to
 int clientPort = 11111;
-String clientHost = "localhost"; 
+String clientHost = "10.40.16.29"; 
 // This is our object that sends UDP out
 DatagramSocket ds; 
 // Capture object
