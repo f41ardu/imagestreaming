@@ -4,8 +4,9 @@ import java.awt.image.*;
 import java.net.*;
 import java.io.*;
 
-// This is the port we are sending to
-int clientPort = 11111; 
+// This is the port and host we are sending to
+int clientPort = 11111;
+String clientHost = "localhost"; 
 // This is our object that sends UDP out
 DatagramSocket ds; 
 // Capture object
@@ -41,5 +42,5 @@ void draw() {
 
  imageMode(CENTER);
  image(cam, width/2, height/2);
- broadcast(cam);
+ broadcast(cam, clientPort, clientHost);
 }

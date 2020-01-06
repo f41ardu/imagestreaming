@@ -9,7 +9,7 @@ import javax.imageio.*;
 import java.awt.image.*; 
 import java.io.*;
 
-void broadcast(PImage img) {
+void broadcast(PImage img, int port, String sendtoHost) {
 
   // We need a buffered image to do the JPG encoding
   BufferedImage bimg = new BufferedImage( img.width,img.height, BufferedImage.TYPE_INT_RGB );
