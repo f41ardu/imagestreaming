@@ -18,6 +18,7 @@ void setup() {
   video = createImage(640, 480, RGB);
   thread = new ReceiverThread(320, 240, 11111, "0.0.0.0");
   thread.start();
+  frameRate(20); // Slow it down a little
 }
 
 void draw() {

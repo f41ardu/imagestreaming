@@ -103,7 +103,7 @@ class ReceiverThread extends Thread {
         ByteArrayInputStream bais = new ByteArrayInputStream( inBuffer );
 
         // We need to unpack JPG and put it in the PImage img
-        // img.loadPixels();
+        img.loadPixels();
         try {
           // Make a BufferedImage out of the incoming bytes
           BufferedImage bimg = ImageIO.read(bais);
@@ -128,3 +128,44 @@ class ReceiverThread extends Thread {
     interrupt();
   }
 }
+
+/*
+https://stackoverflow.com/questions/18737842/creating-a-mat-object-from-a-yv12-image-buffer
+cv::Mat Yv12ToRgb( uchar *pBuffer,long bufferSize, int width,int height )
+{
+    cv::Mat result(height,width,CV_8UC3);
+    uchar y,cb,cr;
+
+    long ySize=width*height;
+    long uSize;
+    uSize=ySize>>2;
+
+    assert(bufferSize==ySize+uSize*2);
+
+    uchar *output=result.data;
+    uchar *pY=pBuffer;
+    uchar *pU=pY+ySize;
+    uchar *pV=pU+uSize;
+
+    uchar r,g,b;
+    for (int i=0;i<uSize;++i)
+    {
+        for(int j=0;j<4;++j)
+        {
+            y=pY[i*4+j];
+            cb=ucharpU[i];
+            cr=ucharpV[i];
+
+                //ITU-R standard
+            b=saturate_cast<uchar>(y+1.772*(cb-128));
+            g=saturate_cast<uchar>(y-0.344*(cb-128)-0.714*(cr-128));
+            r=saturate_cast<uchar>(y+1.402*(cr-128));
+
+            *output++=b;
+            *output++=g;
+            *output++=r;
+        }
+    }
+    return result;
+}
+*/
