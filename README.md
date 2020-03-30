@@ -17,6 +17,6 @@ localhost in the related broadcast pde:
 If you plan to use it on the Windows platform you may use the Processing Video library instead
 of Haiders Video library for Linux/Raspberry. Unfortunately depreciated now. 
 
-At thsi point in time I plan no further update. I'm not able to encode h264 videstream using this approach. 
+At this point in time I plan no further update. I'm not able to encode h264 videstream using this approach. 
 
  
